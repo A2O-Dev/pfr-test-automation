@@ -1,10 +1,21 @@
+import * as dotenv from 'dotenv'
+
+const envFound = dotenv.config();
+if (envFound.error) {
+  throw new Error("Couldn't find .env file");
+}
+
+const env = process.env
+
 describe('Not received Pledge filter test', () => {
+    const url = env.PFR_URL + 'auth/login'
+    const donorManagementUrl = env.PFR_URL +'donor-management'
     it('filter test', async () => {
-        await browser.url('http://localhost/donor-management')
-        await $('#username').setValue('siteadmin1')
-        await $('#password').setValue('admin')
+        await browser.url(url)
+        await $('#username').setValue(env.SITEADMIN_USERNAME)
+        await $('#password').setValue(env.SITEADMIN_PASSWORD)
         await $('input[type="submit"]').click()
-        await browser.url('http://localhost/donor-management')
+        await browser.url(donorManagementUrl)
         
 
         const pledgeCriterialLink = await $('.q-item__label=Pledge Criteria')
