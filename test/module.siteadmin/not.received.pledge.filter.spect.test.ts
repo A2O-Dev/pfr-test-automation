@@ -40,7 +40,7 @@ describe('Not received Pledge filter test', () => {
         for (let index = 1; index <= tableRowsNo; index++) {
             const lastPledge = new Date(await $(`//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div[1]/table/tbody/tr[${index}]/td[6]`).getValue()) 
             const lastDonation = new Date(await $(`//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div[1]/table/tbody/tr[${index}]/td[9]`).getValue())  
-            const diff = (lastDonation.getTime() - lastPledge.getTime()) / (1000 * 60 * 60 * 24)
+            const diff = (lastDonation.getTime() - lastPledge.getTime()) / (86400000)
             const result = diff <= 0 ? 'pass' : 'fail'   
             expect(result).toHaveTextContaining('pass')   
         }       
