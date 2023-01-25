@@ -1,8 +1,9 @@
 describe('Call the scheduled contact', () => {
     it('Login', async() => {
       await browser.url('http://localhost:8181/auth/login')  
+      await browser.pause(3000)
       await browser.maximizeWindow()
-      await browser.pause(3000)   
+         
       await expect($('#username')).toBeExisting()
       await expect($('#password')).toBeExisting()
       
