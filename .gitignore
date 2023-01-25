@@ -2,5 +2,5 @@
 # Dependecies
 node_modules/
 allure-results/
-#Vatiables de entorno
+# Environment Variables
 .env

@@ -9,15 +9,15 @@ const env = process.env
 
 describe('Login like a caller', () => {
     it('should have a complete UI', async () => {
-      await browser.url(env.PFR_URL_LOCAL)
+      await browser.url(env.PFR_URL)
       
       await expect($('#username')).toBeExisting()
       await expect($('#password')).toBeExisting()
     })
-    it('loging', async () => {
-      await browser.url(env.PFR_URL_LOCAL)
-      await $('#username').setValue(env.CALLER_USERNAME)
-      await $('#password').setValue(env.CALLER_PASSWORD)
+    it('login', async () => {
+      await browser.url(env.PFR_URL)
+      await $('#username').setValue(env.SITEADMIN_USERNAME)
+      await $('#password').setValue(env.SITEADMIN_PASSWORD)
       await $('input[type="submit"]').click()    
     })
   })
