@@ -7,7 +7,7 @@ if (envFound.error) {
 
 const env = process.env
 
-describe('Login like a caller', () => {
+describe('Login like a siteadmin', () => {
     const url = env.PFR_URL + 'auth/login'
     it('should have a complete UI', async () => {
       await browser.url(url)
