@@ -12,21 +12,22 @@ Node: 18
    npm install
    ```
 
-2. Run tests
+2. Copy .env.example file
 
    ```shell
-   npm run wdio
+   cp .env.example .env
    ```
 
-# Steps to install environment variable
+3. Set up environment variables in .env file
 
-1. Place the data corresponding to the environment variables.
-
-   ```in the .env.example
+   ```
    SITEADMIN_USERNAME=put the credential
    SITEADMIN_PASSWORD=put the credential
    PFR_URL=put the url
    ```
-2. Execute the next commad
-   ```in the terminal of the VScode
-   cp .env.example .env
+
+4. Run tests
+
+   ```shell
+   npm run wdio
+   ```
