@@ -1,4 +1,6 @@
 import * as dotenv from 'dotenv'
+import * as fs from 'fs';
+import * as pdf from 'text-from-pdf'
 
 const envFound = dotenv.config();
 if (envFound.error) {
@@ -6,6 +8,9 @@ if (envFound.error) {
 }
 
 const env = process.env
+const pathToChromeDownloads = './testDownloads';
+let pdfFile = ''
+let phoneNumber = '';
 
 describe('Check the phone number on the donation extract ', () => {
 
@@ -22,30 +27,46 @@ describe('Check the phone number on the donation extract ', () => {
         await browser.pause(3000)
     })
 
-
-    it('Check Phone number Donation extract', async () => {
+    it('Download pdf file', async () => {
         //Nav
         await $('.dropdown=Site').click()
         await browser.pause(1000)
-        //await $('//nav/div/div[2]/ul[2]/li[3]/ul/li[3]/a').click()
         await $('=Donor Management').click()
         await browser.pause(2000)
 
-        // 
-        const donorName = await $('//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div/table/tbody/tr/td[3]/a')
-        //const company =await $('//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div/table/tbody/tr/td[4]/a')
-        //const prevPledge = await $('//table/tbody/tr[1]/td[1]/a')
-        //const printReceipt = await $('[role=button]')
+        const donorName = await $('//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div/table/tbody/tr[1]/td[3]/a')
+        const prevPledge = await $('//table/tbody/tr[1]/td[1]/a')
+        const printReceipt = await $('.btn-info')
 
         await donorName.click()
         await browser.pause(3000)
-        //await expect ('h1=Donor Details').toBeExisting()
-        console.log(browser.getUrl())
-        /*
+
+        // New page
+        await browser.switchWindow('Outreach Marketing, LLC')
+        await browser.pause(3000)
+
+        const pageHeader = await $('.page-header').$('h1=Donor Details')
+
+        phoneNumber = await $('#phone').getValue()
+        await expect(pageHeader).toBeExisting()
         await prevPledge.click()
         await browser.pause(3000)
-        await printReceipt.click()
+        await expect(printReceipt).toBeExisting()
+        await printReceipt.click()  // download
         await browser.pause(3000)
-        */
     })
+    it('Verify the file is downloaded', async () => {
+        const files = await fs.promises.readdir(pathToChromeDownloads);
+        pdfFile = files[0]
+        await expect(files[0].includes('-receipt.pdf')).toBe(true)
+    });
+    it('Extract pdf data', async () => {
+        const data = await pdf.pdfToText(pathToChromeDownloads + '/' + pdfFile)
+    })
+    it('it should contain phone number', async () => {
+        const data = await pdf.pdfToText(pathToChromeDownloads + '/' + pdfFile)
+        await expect(data.includes('Phone Number:')).toBe(true)
+        await expect(data.includes(phoneNumber)).toBe(true)
+    })
+
 })
