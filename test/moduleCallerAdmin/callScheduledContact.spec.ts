@@ -7,7 +7,7 @@ if (envFound.error) {
 
 const env = process.env
 
-describe('Reschedule a callback to a Donor', () => {
+describe('Call one of the scheduled contacts', () => {
   // Login
   const url = env.PFR_URL + 'auth/login'
 
@@ -23,7 +23,7 @@ describe('Reschedule a callback to a Donor', () => {
 
   // Callback Requested
 
-  it('Callback Requested', async () => {
+  it('Call scheduled contacts', async () => {
     // Nav
     await $('//nav/div/div[2]/ul[2]/li[3]/a').click()
     await expect($('h1=Scheduled Calls')).toBeExisting()
