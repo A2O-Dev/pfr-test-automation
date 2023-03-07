@@ -21,7 +21,7 @@ describe('Call one of the scheduled contacts', () => {
     await browser.pause(3000)
   })
 
-  // Callback Requested
+  // Scheduled Calls
 
   it('Call scheduled contacts', async () => {
     // Nav
