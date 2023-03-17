@@ -48,5 +48,6 @@ describe('Login like a siteadmin', () => {
       await browser.pause(5000)
       await $('//*[@id="navbar"]/ul[2]/li[1]/a').click() 
       await browser.pause(5000)
+      
     })
   })
