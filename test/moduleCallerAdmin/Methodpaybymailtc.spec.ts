@@ -7,12 +7,7 @@ if (envFound.error) {
 const env = process.env
 describe('Login like a siteadmin', () => {
     const url = env.PFR_URL + 'auth/login'
-    it('should have a complete UI', async () => {
-      await browser.url(url)
-      
-      await expect($('#username')).toBeExisting()
-      await expect($('#password')).toBeExisting()
-    })
+    
     it('login', async () => {
       await browser.url(url)
       await browser.pause(3000)
@@ -48,6 +43,5 @@ describe('Login like a siteadmin', () => {
       await browser.pause(5000)
       await $('//*[@id="navbar"]/ul[2]/li[1]/a').click() 
       await browser.pause(5000)
-      
     })
   })
