@@ -33,7 +33,7 @@ describe('Reschedule a callback to a Donor', () => {
         // Callback Time
         await $('#callbackRequestedButton').click()
         await browser.pause(3000)
-        await $('.xdsoft_next').click
+        await $('.xdsoft_next').click()
         await $('.xdsoft_day_of_week6').click()
         await browser.pause(3000)
         await $('.btn-primary=Submit').click()

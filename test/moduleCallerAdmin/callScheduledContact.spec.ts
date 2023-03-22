@@ -34,7 +34,7 @@ describe('Call the scheduled contact', () => {
     const companyContText = companyContactTable.getText()
     const nameContText = nameContactTable.getText()
 
-    $(btnCall).click()
+   await btnCall.click()
 
     const companyCall = await $('.nameAndCompany .company').getText()
     const nameCall = await $('.donorName').getText()
