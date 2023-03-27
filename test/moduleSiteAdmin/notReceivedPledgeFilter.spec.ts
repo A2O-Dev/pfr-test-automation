@@ -35,7 +35,7 @@ describe('Not received Pledge filter test', () => {
         
         const tableRowsYes = await $('table.q-table tbody').$$('tr').length
         for (let index = 1; index <= tableRowsYes ; index++) {
-            expect($(`//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div[1]/table/tbody/tr[${index}]/td[7]`)).not.toBeNull()            
+            await expect($(`//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div[1]/table/tbody/tr[${index}]/td[7]`)).not.toBeNull()            
         }
 
         /// when the filter is no
@@ -53,7 +53,7 @@ describe('Not received Pledge filter test', () => {
             const lastDonation = new Date(await $(`//*[@id="app"]/div/div/div/div/div[2]/main/div/div[4]/div/div/div[1]/table/tbody/tr[${index}]/td[9]`).getValue())  
             const diff = (lastDonation.getTime() - lastPledge.getTime()) / (86400000)
             const result = diff <= 0 ? 'pass' : 'fail'   
-            expect(result).toHaveTextContaining('pass')   
+            await expect(result).toHaveTextContaining('pass')   
         }       
     })
 })
