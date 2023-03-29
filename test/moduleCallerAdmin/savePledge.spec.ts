@@ -24,8 +24,8 @@ const url = env.PFR_URL + 'auth/login'
       const amount = await $("[placeholder='Amount']")
       const in_Kind_Pledge = await $("[value='1']")
       const method = await $("[value='Drop off']")
-      const savepledge = await $('//*[@id="donorInformationForm"]/div[3]/button[2]')
-      const buttonconfirm = await $('//*[@id="pledgeConfirmationLightbox"]/div/div/div[3]/button[2]')
+      const savepledge = await $$('button[type="submit"]')[2]
+      const buttonconfirm = await $('aria/Submit Pledge')
       await button.click()
       await amount.waitForDisplayed()
       await amount.setValue(env.CALLER_AMOUNT)
