@@ -20,7 +20,7 @@ const url = env.PFR_URL + 'auth/login'
 
     //Method of payment by "Drop off"
     it('Call Save the Pledge', async () => {
-      const button = await $("[id='takePledgeButton']")
+      const button = await $$('[type="button"]')[3]
       const amount = await $("[placeholder='Amount']")
       const in_Kind_Pledge = await $("[value='1']")
       const method = await $("[value='Drop off']")
