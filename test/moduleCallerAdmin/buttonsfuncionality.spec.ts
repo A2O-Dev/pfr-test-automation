@@ -14,7 +14,7 @@ const url = env.PFR_URL + 'auth/login'
       await $('#username').setValue(env.CALLER_USERNAME)
       await $('#password').setValue(env.CALLER_PASSWORD)
       await $('input[type="submit"]').click()    
-      await browser.pause(7000)
+      await browser.pause(6000)
     })
     it('Call buttons funcionality', async () => {
       const btno_answer = await $('//*[@id="callActions"]/button[2]')
