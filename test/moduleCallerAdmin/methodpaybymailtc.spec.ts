@@ -20,7 +20,7 @@ describe('Login like a siteadmin', () => {
 
     //Method of payment by "Mail"
     it('Call Save the Pledge', async () => {
-      const button = await $("[id='takePledgeButton']")
+      const button = await $$('[type="button"]')[3]
       const amount = await $("[placeholder='Amount']")
       const in_Kind_Pledge = await $("[value='1']")
       const method = $("[value='Mail']")
