@@ -1,3 +1,4 @@
+// @ts-ignore
 import { selectors } from '../dictionaries/selectors.ts'
 import * as dotenv from 'dotenv'
 
@@ -10,6 +11,7 @@ describe('Login like a siteadmin', () => {
   const url = env.PFR_URL + 'auth/login'
   it('should have a complete UI', async () => {
     await browser.url(url)
+    await browser.maximizeWindow()
     await expect($(selectors.userName)).toBeExisting()
     await expect($(selectors.password)).toBeExisting()
   })
