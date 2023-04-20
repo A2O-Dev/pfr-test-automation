@@ -12,5 +12,9 @@
             "@wdio/mocha-framework"
         ],
         "target": "es2022"
-    }
-}
+    },
+    "include": [
+      "./tests/**/*.ts",
+      "./dictionary/**/*.ts"
+    ]
+  }
