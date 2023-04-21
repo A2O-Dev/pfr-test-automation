@@ -20,6 +20,6 @@ describe('Login like a siteadmin', () => {
 
     await $(selectors.userName).setValue(env.SITEADMIN_USERNAME)
     await $(selectors.password).setValue(env.SITEADMIN_PASSWORD)
-    await $(selectors.bntLogin).click()
+    await $(selectors.btnLogin).click()
   })
 })
