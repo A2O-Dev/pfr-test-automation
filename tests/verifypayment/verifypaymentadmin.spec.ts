@@ -22,7 +22,6 @@ describe('Login like a siteadmin', () => {
   })
   //verifying payment by Admin
   it('Verify payment', async () => {
-    await $("a[href='/confirmations']").click()
-    
+    await $('.dropdown=Confirm').click()
   })
 })
