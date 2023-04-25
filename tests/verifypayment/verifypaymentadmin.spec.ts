@@ -6,8 +6,8 @@ const env = process.env
 
 describe('Login like a siteadmin', () => {
   const url = env.PFR_URL + 'auth/login'
-  //Login as user Admin
-  it('login', async () => {
+  //verifying payment by Admin
+  it('verifying payment', async () => {
     await browser.url(url)
     await browser.maximizeWindow()
     const name = await $(login.userName)
@@ -15,9 +15,7 @@ describe('Login like a siteadmin', () => {
     await $(name).setValue(env.SITEADMIN_USERNAME)
     await $(password).setValue(env.SITEADMIN_PASSWORD)
     await $(login.btnLogin).click()
+    await $("a[href='/confirmations']").click()
   })
-  //verifying payment by Admin
-  it('Verify payment', async () => {
-    await $('.dropdown=Confirm').click()
-  })
+  
 })
