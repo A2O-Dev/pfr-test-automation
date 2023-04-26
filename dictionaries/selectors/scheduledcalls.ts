@@ -4,5 +4,4 @@ export const scheduled = {
     btnCall             :'//table/tbody[1]/tr/td[9]/a'
 
 
-
 }
