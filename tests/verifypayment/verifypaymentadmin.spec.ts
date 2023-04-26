@@ -1,5 +1,6 @@
 import { login, scheduled } from '../../dictionaries/selectors/index.ts'
 import * as dotenv from 'dotenv'
+import { menuadmin, navegationadmin } from '../../dictionaries/selectors/navegationadmin.js';
 
 const envFound = dotenv.config();
 const env = process.env
@@ -12,7 +13,7 @@ describe('Login like a siteadmin', () => {
     await $(login.userName).setValue(env.SITEADMIN_USERNAME)
     await $(login.password).setValue(env.SITEADMIN_PASSWORD)
     await $(login.btnLogin).click()
-    await $(scheduled.menuConfirm).click()
+    await $(navegationadmin.menuConfirm).click()
   })
   
 })
