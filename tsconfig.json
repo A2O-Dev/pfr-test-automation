@@ -2,6 +2,9 @@
     "compilerOptions": {
         "moduleResolution": "node",
         "module": "ESNext",
+        "typeRoots": [
+            "./node_modules/@types/"
+          ],
         "types": [
             "node",
             "@wdio/globals/types",
@@ -10,4 +13,4 @@
         ],
         "target": "es2022"
     }
-}
+  }

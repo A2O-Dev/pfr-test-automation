@@ -1,4 +1,5 @@
 import type { Options } from '@wdio/types'
+import *  as path from 'path' // Check pdf data
 
 export const config: Options.Testrunner = {
     //
@@ -31,7 +32,8 @@ export const config: Options.Testrunner = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.ts'
+        './test/specs/**/*.ts',
+        './test/**/*.ts',
     ],
     // Patterns to exclude.
     exclude: [
@@ -67,7 +69,13 @@ export const config: Options.Testrunner = {
         maxInstances: 5,
         //
         browserName: 'chrome',
-        acceptInsecureCerts: true
+        acceptInsecureCerts: true,
+        // Check pdf data
+        "goog:chromeOptions" : {
+            "prefs" : {
+                "download.default_directory" : path.join(process.cwd(),'testDownloads')
+            }
+        }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -151,7 +159,7 @@ export const config: Options.Testrunner = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 100000
     },
     //
     // =====
