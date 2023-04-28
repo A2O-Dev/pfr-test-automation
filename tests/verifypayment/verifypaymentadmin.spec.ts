@@ -8,10 +8,13 @@ describe('Login like a siteadmin', () => {
   it('verifying payment', async () => {
     await browser.url(url)
     await browser.maximizeWindow()
-    await $(login.userName).setValue(env.SITEADMIN_USERNAME)
-    await $(login.password).setValue(env.SITEADMIN_PASSWORD)
+    const name= await $(login.userName)
+    const password= await $(login.password)
+    await $(name).setValue(env.SITEADMIN_USERNAME)
+    await expect(name).toBeExisting()
+    await $(password).setValue(env.SITEADMIN_PASSWORD)
+    await expect(password).toBeExisting()
     await $(login.btnLogin).click()
     await $(navigationAdmin.confirmations).click()
   })
-  
 })
