@@ -1,7 +1,8 @@
 export const scheduled = {
-    companyContactTable :'//table/tbody[1]/tr/td[1]',
-    nameContactTable    :'//table/tbody[1]/tr/td[2]',
-    btnCall             :'//table/tbody[1]/tr/td[9]/a'
-
-
+    companyContactTable  :'tbody tr td:nth-child(1)',
+    nameContactTable     :'tbody tr td:nth-child(2)',
+    buttonCall           :'=Call',
+    scheduledCallButton  :'a[href="/caller/scheduled-calls"]',
+    scheduledCallTitle   :'h1=Scheduled Calls',
+    scheduledCallerTable :'#donors'
 }

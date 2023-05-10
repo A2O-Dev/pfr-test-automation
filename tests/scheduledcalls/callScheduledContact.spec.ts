@@ -1,3 +1,4 @@
+import { scheduled, login  } from '../../dictionaries/selectors/index.ts'
 import * as dotenv from 'dotenv'
 
 const envFound = dotenv.config();
@@ -8,41 +9,45 @@ if (envFound.error) {
 const env = process.env
 
 describe('Call the scheduled contact', () => {
+  // Wait between tests
+  const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
   // Login
   const url = env.PFR_URL + 'auth/login'
 
   it('Login', async () => {
     await browser.url(url)
-    await browser.pause(3000)
-    await $('#username').setValue(env.SITEADMIN_USERNAME)
-    await $('#password').setValue(env.SITEADMIN_PASSWORD)
+    await $('#username').setValue(env.CALLER_USERNAME)
+    await $('#password').setValue(env.CALLER_PASSWORD)
     await $('input[type="submit"]').click()
+    await browser.url(env.PFR_URL + 'caller/find-lead')
   })
+
+  it('Wait between tests', async () => {
+    await wait(3000);
+  });
 
   // Call a scheduled contact
 
   it('Call a scheduled contact', async () => {
     //Nav
-    await $('.dropdown=Caller').click()
-    await browser.pause(1000)
-    await $('.dropdown').$('//nav/div/div[2]/ul[2]/li[3]/ul/li[3]').click()
-    await browser.pause(2000)
-
-    const companyContactTable = await $('//table/tbody[1]/tr/td[1]')
-    const nameContactTable = await $('//table/tbody[1]/tr/td[2]')
-    const btnCall = await $('//table/tbody[1]/tr/td[9]/a')
-    const companyContText = companyContactTable.getText()
-    const nameContText = nameContactTable.getText()
-
-    $(btnCall).click()
-
+    const scheduledCallsButton = await $(scheduled.scheduledCallButton)
+    const companyContactTable = await $(scheduled.companyContactTable)
+    const nameContactTable = await $(scheduled.nameContactTable)
+    const buttonCall = await $(scheduled.buttonCall)
+    const companyContText = await companyContactTable.getText()
+    const nameContText = await nameContactTable.getText()
+    
+    await scheduledCallsButton.click()
+    await expect($(scheduled.scheduledCallTitle)).toBeExisting()
+    await expect($(scheduled.scheduledCallerTable)).toBeExisting()
+    
+    buttonCall.click()
     const companyCall = await $('.nameAndCompany .company').getText()
     const nameCall = await $('.donorName').getText()
 
     await expect($('h1=Call')).toBeExisting()
     expect(companyContText).toHaveTextContaining(companyCall)
     expect(nameContText).toHaveText(nameCall)
-    await browser.pause(3000)
-
   })
 })
