@@ -4,5 +4,8 @@ export const scheduled = {
     buttonCall           :'=Call',
     scheduledCallButton  :'a[href="/caller/scheduled-calls"]',
     scheduledCallTitle   :'h1=Scheduled Calls',
-    scheduledCallerTable :'#donors'
+    scheduledCallerTable :'#donors',
+    callBackRequestButton:'#callbackRequestedButton',
+    buttonSubmit         :'.btn-primary=Submit'   
+
 }

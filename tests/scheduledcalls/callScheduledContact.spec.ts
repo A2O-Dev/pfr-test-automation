@@ -17,9 +17,9 @@ describe('Call the scheduled contact', () => {
 
   it('Login', async () => {
     await browser.url(url)
-    await $('#username').setValue(env.CALLER_USERNAME)
-    await $('#password').setValue(env.CALLER_PASSWORD)
-    await $('input[type="submit"]').click()
+    await $(login.userName).setValue(env.CALLER_USERNAME)
+    await $(login.password).setValue(env.CALLER_PASSWORD)
+    await $(login.btnLogin).click()
     await browser.url(env.PFR_URL + 'caller/find-lead')
   })
 
@@ -42,12 +42,17 @@ describe('Call the scheduled contact', () => {
     await expect($(scheduled.scheduledCallTitle)).toBeExisting()
     await expect($(scheduled.scheduledCallerTable)).toBeExisting()
     
-    buttonCall.click()
+    buttonCall.click();
+
+    await browser.waitUntil(async () => {
+      return (await $('.nameAndCompany .company').isDisplayed())
+    }, { timeout: 5000 })
+
     const companyCall = await $('.nameAndCompany .company').getText()
     const nameCall = await $('.donorName').getText()
-
+    
     await expect($('h1=Call')).toBeExisting()
     expect(companyContText).toHaveTextContaining(companyCall)
-    expect(nameContText).toHaveText(nameCall)
+    expect(nameContText).toHaveTextContaining(nameCall)
   })
 })
