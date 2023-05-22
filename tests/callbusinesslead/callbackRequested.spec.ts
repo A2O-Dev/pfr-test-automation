@@ -52,12 +52,3 @@ describe('Reschedule a callback to a Donor', () => {
         buttonSubmit.click()          
       })     
 })
-//await expect ($('.btn-primary')).toBeExisting()
-        //await browser.pause(5000)
-        // Callback Time
-        
-        //await expect ($('.xdsoft_next')).toBeExisting()
-        //await expect($('.xdsoft_day_of_week6')).toBeExisting()
-        //await browser.pause(3000)
-        //await expect($('.btn-primary=Submit')).toBeExisting()
-        //await browser.pause(3000)
