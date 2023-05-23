@@ -9,10 +9,7 @@ if (envFound.error) {
 const env = process.env
 
 describe('Reschedule a callback to a Donor', () => {
-    // Wait between tests
     const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    
-    // Login
     const url = env.PFR_URL + 'auth/login'
 
     it('Login', async () => {
@@ -27,8 +24,6 @@ describe('Reschedule a callback to a Donor', () => {
         await wait(3000);
     })
 
-    // Callback Requested
-
     it('Callback Requested', async () => {
         const callbackRequestButton = await $(scheduled.callBackRequestButton);
         await callbackRequestButton.click()
@@ -37,7 +32,6 @@ describe('Reschedule a callback to a Donor', () => {
             timeoutMsg: 'La ventana emergente de selección de fecha no apareció'
           })
       
-        // Seleccionar y hacer clic en la fecha de hoy
         const today = new Date()
         const todayDate = today.getDate()
         const todayCell = await $(`td[data-date="${todayDate}"].xdsoft_today`)
@@ -47,7 +41,6 @@ describe('Reschedule a callback to a Donor', () => {
             timeoutMsg: 'El botón "Hoy" no apareció'
           })
 
-        // Click en el boton submit
         const buttonSubmit = await $(scheduled.buttonSubmit)
         buttonSubmit.click()          
       })     
