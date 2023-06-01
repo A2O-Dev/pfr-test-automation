@@ -1,36 +1,16 @@
 import { scheduled, login  } from '../../dictionaries/selectors/index.ts'
-import * as dotenv from 'dotenv'
-
-const envFound = dotenv.config();
-if (envFound.error) {
-  throw new Error("Couldn't find .env file");
-}
-
-const env = process.env
+import { urls, credentials } from '../../dictionaries/config/index.ts'
 
 describe('Call the scheduled contact', () => {
-  // Wait between tests
-  const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-  // Login
-  const url = env.PFR_URL + 'auth/login'
-
-  it('Login', async () => {
-    await browser.url(url)
-    await $(login.userName).setValue(env.CALLER_USERNAME)
-    await $(login.password).setValue(env.CALLER_PASSWORD)
-    await $(login.btnLogin).click()
-    await browser.url(env.PFR_URL + 'caller/find-lead')
+  before('Login', async () => {
+    await browser.url(urls.login)
+    await $(login.userName).setValue(credentials.caller.username)
+    await $(login.password).setValue(credentials.caller.password)
+    await $(login.btnLogin).click()  
   })
 
-  it('Wait between tests', async () => {
-    await wait(3000);
-  });
-
-  // Call a scheduled contact
-
   it('Call a scheduled contact', async () => {
-    //Nav
+
     const scheduledCallsButton = await $(scheduled.scheduledCallButton)
     const companyContactTable = await $(scheduled.companyContactTable)
     const nameContactTable = await $(scheduled.nameContactTable)
