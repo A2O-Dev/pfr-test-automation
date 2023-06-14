@@ -7,8 +7,10 @@ if (envFound.error) {
 
 const env = process.env
 
+const host = env.PFR_URL ?? 'http://localhost/'
+
 export const urls = {
-  host: env.PFR_URL ?? 'http://localhost/',
-  login: `${env.PFR_URL ?? 'http://localhost/'}auth/login`,
-  callerFindLead: `${env.PFR_URL ?? 'http://localhost/'}caller/find-lead`
+  host,
+  login: `${host}auth/login`,
+  callerFindLead: `${host}caller/find-lead`
 }
