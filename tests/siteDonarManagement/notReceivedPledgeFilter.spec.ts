@@ -1,3 +1,4 @@
+import { login, donorManagement } from '../../dictionaries/selectors/index.ts'
 import * as dotenv from 'dotenv'
 
 const envFound = dotenv.config();
@@ -18,10 +19,10 @@ describe('Not received Pledge filter test', () => {
         await browser.url(donorManagementUrl)
         
 
-        const pledgeCriterialLink = await $('.q-item__label=Pledge Criteria')
-        const selectYesElement =await $('//*[@id="app"]/div/div/div/div/div[2]/main/div/div[2]/div/div[3]/div/div[2]/div/div[4]/div[2]/div/div[2]')        
-        const selectNoElement =await $('//*[@id="app"]/div/div/div/div/div[2]/main/div/div[2]/div/div[3]/div/div[2]/div/div[4]/div[3]/div/div[2]')
-        const searchButton =await $('//*[@id="app"]/div/div/div/div/div[2]/main/div/div[2]/div/div[3]/div/div[2]/div/div[5]/button')
+        const pledgeCriterialLink = await $(donorManagement.pledgeCriterialLink)
+        const selectYesElement =await $(donorManagement.selectYesElement)        
+        const selectNoElement =await $(donorManagement.selectNoElement)
+        const searchButton =await $(donorManagement.searchButton)
 
         pledgeCriterialLink.click()
         await browser.pause(3000)
