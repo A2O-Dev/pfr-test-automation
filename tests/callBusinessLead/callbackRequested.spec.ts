@@ -13,14 +13,14 @@ describe('Reschedule a callback to a Donor', () => {
     it('Callback Requested', async () => {
         await browser.url(urls.callerFindLead)     
         const callbackRequestButton = await $(scheduled.callBackRequestButton)
+        const calendar = await $(scheduled.calendar)
         await callbackRequestButton.waitForClickable()
         await callbackRequestButton.click()
-        await $('.xdsoft_datetimepicker').waitForClickable()
-        expect(await $('.xdsoft_datetimepicker')).toBeExisting()
+        await $(calendar).waitForClickable()
+        await expect(calendar).toBeExisting()
       
-        const today = new Date()
-        const todayDate = today.getDate()
-        const todayCell = await $(`td[data-date="${todayDate}"].xdsoft_today`)
+        
+        const todayCell = await $(scheduled.todayCell)
         await todayCell.click()
         await browser.waitUntil(async () => await $('.xdsoft_today_button').isExisting(), {
             timeout: 5000,
