@@ -28,6 +28,6 @@ describe('Reschedule a callback to a Donor', () => {
           })
 
         const buttonSubmit = await $(scheduled.buttonSubmit)
-        buttonSubmit.click()
+        await buttonSubmit.click()
       })
 })
