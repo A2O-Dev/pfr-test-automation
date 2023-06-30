@@ -22,7 +22,7 @@ describe('Reschedule a callback to a Donor', () => {
         
         const todayCell = await $(scheduled.todayCell)
         await todayCell.click()
-        await browser.waitUntil(async () => await $('.xdsoft_today_button').isExisting(), {
+        await browser.waitUntil(async () => await $(scheduled.todayButton).isExisting(), {
             timeout: 5000,
             timeoutMsg: 'The "Today" button did not appear'
           })

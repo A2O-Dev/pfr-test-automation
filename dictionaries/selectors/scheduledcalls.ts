@@ -14,6 +14,7 @@ export const scheduled = {
     callBackRequestButton:'#callbackRequestedButton',
     buttonSubmit         :'.btn-primary=Submit',   
     calendar             :'.xdsoft_datetimepicker',
-    todayCell            :`td[data-date="${todayDate}"].xdsoft_today`
+    todayCell            :`td[data-date="${todayDate}"].xdsoft_today`,
+    todayButton          :'.xdsoft_today_button'
 
 }
